@@ -1,23 +1,30 @@
 import React from 'react'
 import MyInput from './MyInput'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, Routes, useNavigate } from 'react-router-dom'
 import MyButton from './MyButton'
 
 const Navbar = () => {
+
+    const navigate = useNavigate()
+
     return (
         <div>
             <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
                 <div className="container-fluid">
-                    <Link class="navbar-brand fs-3" to={"/"}>AniChu</Link>
+                    <Link className="navbar-brand fs-3" to={"/"}>
+                        <span className="text-white">Ani</span>
+                        <b className="text-success">Chu</b>
+                    </Link>
                     <form className="d-flex">
-                        <MyInput 
+                        <MyInput
                             className={"form-control"}
                             type={"search"}
-                            placeholder={"Поиск..."}/>
-                        <MyButton 
-                            text={"Вход"}
+                            placeholder={"Поиск..."} />
+                        <MyButton
+                            text={"Войти"}
                             className={"btn btn-outline-success mx-2"}
                             type={"login"}
+                            onClick={() => navigate("/login")}
                         />
                     </form>
                 </div>
