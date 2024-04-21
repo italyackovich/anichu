@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const MyInput = ({className, type, placeholder}) => {
+const MyInput = ({className, type, placeholder, style}) => {
 
     const [value, setValue] = useState('')
 
@@ -10,6 +10,7 @@ const MyInput = ({className, type, placeholder}) => {
             className={className}
             type={type}
             value={value}
+            style={style}
             placeholder={placeholder}
             onChange={(e) => setValue(e.target.value)}
         />

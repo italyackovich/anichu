@@ -1,6 +1,6 @@
 import React from 'react'
-import "../components/Forms/MyForm.module.css"
-import MyForm from '../components/Forms/MyForm'
+import MyForm from '../components/MyForm'
+import Login from '../components/Login'
 
 const Authorization = () => {
     return (
@@ -11,7 +11,7 @@ const Authorization = () => {
                     <b className="text-success">Chu</b>
                 </h1>
             </div>
-            <MyForm />
+            <MyForm style={{ minWidth: '400px', minHeight: '300px' }} body={<Login/>} />
         </div>
     )
 }
