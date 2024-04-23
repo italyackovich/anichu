@@ -1,5 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import AnimeItem from './AnimeItem'
+import AnimeService from '../API/AnimeService'
 
 const AnimeList = () => {
 
@@ -10,24 +12,15 @@ const AnimeList = () => {
     }, [])
 
     const loadAnime = async () => {
-        const result = await axios.get("http://localhost:8080/anime")
-        setAnime(result.data)
+        const result = await AnimeService.getAllAnime()
+        setAnime(result)
     }
     return (
         <div>
             <h1>Онгоинги</h1>
             <div className='d-flex flex-wrap'>
                 {anime.map((anime) => (
-                    <div className='m-3 my-5'>
-                        <div className='container d-flex align-items-center'>
-                            <img src={anime.img} alt={anime.link} className="rounded" style={{ width: "70px", height: "100px" }} />
-                            <span className='mx-5'>
-                                <h5><b>{anime.name}</b></h5>
-                                <h5><b>Кол-во серий:</b> {anime.episodes}</h5>
-                                <h5><b>Статус:</b> {anime.status}</h5>
-                            </span>
-                        </div>
-                    </div>
+                    <AnimeItem key={anime.link} anime={anime}/>
                 ))}
             </div>
         </div>
