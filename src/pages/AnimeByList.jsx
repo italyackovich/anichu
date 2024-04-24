@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import AnimeService from '../API/AnimeService'
+import MyForm from '../components/MyForm'
+import AnimeInfo from '../components/AnimeInfo'
+import Navbar from '../components/Navbar'
+import Episode from '../components/Episode'
 
 const AnimeByList = () => {
     const params = useParams()
@@ -17,15 +21,9 @@ const AnimeByList = () => {
 
   return (
     <div>
-        <img src={anime.img}/>
-        <h1>{anime.name}</h1>
-        <h2>{anime.description}</h2>
-        <iframe
-            width="640"
-            height="384"
-            src={anime.episodes?.[0]?.url ?? ''}
-            frameborder="0"
-            allowfullscreen></iframe>
+      <Navbar/>
+      <MyForm body={<AnimeInfo anime={anime}/>} style={{width: "1250px", marginTop:"50px"}}/>
+      <MyForm body={<Episode anime={anime}/>} style={{width: "1250px", marginTop:"50px"}}/>
     </div>
   )
 }

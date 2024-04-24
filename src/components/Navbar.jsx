@@ -1,6 +1,6 @@
 import React from 'react'
 import MyInput from './MyInput'
-import { Link, Navigate, Routes, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import MyButton from './MyButton'
 
 const Navbar = () => {
