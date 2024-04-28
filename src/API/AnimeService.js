@@ -2,11 +2,19 @@ import axios from "axios"
 
 export default class AnimeService {
     static async getAllAnime() {
-        const response = await axios.get('http://localhost:8080/anime')
-        return response.data;
+        try {
+            const response = await axios.get('http://localhost:8080/anime')
+            return response.data;
+        } catch (error) {
+            console.log(error)
+        }
     }
     static async getAnimeById(id) {
-        const response = await axios.get(`http://localhost:8080/anime/${id}`)
-        return response.data;
+        try {
+            const response = await axios.get(`http://localhost:8080/anime/${id}`)
+            return response.data;
+        } catch (error) {
+            console.log(error)
+        }
     }
 }

@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import MyInput from './MyInput'
 import { Link, useNavigate } from 'react-router-dom'
 import MyButton from './MyButton'
+import { AuthContext } from '../context/AuthContext'
 
 const Navbar = () => {
 
     const navigate = useNavigate()
+
+    const {isAuth, setIsAuth} = useContext(AuthContext)
 
     return (
         <div>
@@ -23,12 +26,20 @@ const Navbar = () => {
                             placeholder={"Поиск..."}
                             style={{width: "350px"}}
                         />
-                        <MyButton
-                            text={"Войти"}
-                            className={"btn btn-outline-success mx-4"}
-                            type={"login"}
-                            onClick={() => navigate("/login")}
-                        />
+                        {isAuth
+                            ?   <MyButton
+                                    text={"Выйти"}
+                                    className={"btn btn-outline-danger mx-4"}
+                                    type={"logout"}
+                                    onClick={(e) =>{ e.preventDefault(); return setIsAuth(false)}}
+                                />
+                            :   <MyButton
+                                    text={"Войти"}
+                                    className={"btn btn-outline-success mx-4"}
+                                    type={"login"}
+                                    onClick={() => navigate("/login")}
+                                />
+                        }
                     </form>
                 </div>
             </nav>

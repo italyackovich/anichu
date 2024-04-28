@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
-import axios from 'axios'
 import MyForm from '../components/MyForm'
 import AnimeList from '../components/AnimeList'
 

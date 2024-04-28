@@ -1,8 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-const MyInput = ({className, type, placeholder, style}) => {
-
-    const [value, setValue] = useState('')
+const MyInput = ({className, type, placeholder, style, onChange, value}) => {
 
   return (
     <div>
@@ -12,7 +10,7 @@ const MyInput = ({className, type, placeholder, style}) => {
             value={value}
             style={style}
             placeholder={placeholder}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={onChange}
         />
     </div>
   )
