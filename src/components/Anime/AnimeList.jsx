@@ -1,7 +1,6 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import AnimeItem from './AnimeItem'
-import AnimeService from '../API/AnimeService'
+import AnimeService from '../../API/AnimeService'
 
 const AnimeList = () => {
 

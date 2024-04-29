@@ -17,7 +17,7 @@ const Login = () => {
 
     const {setIsLogin} = useContext(LogContext)
 
-    const {setUserId} = useContext(UserIdContext)
+    const {userId, setUserId} = useContext(UserIdContext)
 
     const {setIsAuth} = useContext(AuthContext)
 
@@ -31,6 +31,8 @@ const Login = () => {
         if (result.find(user => user.email === newUser.email && user.password === newUser.password) !== undefined) {
             setUserId(result.find(user => user.email === newUser.email && user.password === newUser.password).id)
             setIsAuth(true)
+            localStorage.setItem("isAuth", true)
+            localStorage.setItem("userId", result.find(user => user.email === newUser.email && user.password === newUser.password).id)
             navigate()
             return
         }

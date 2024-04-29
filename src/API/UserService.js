@@ -7,9 +7,18 @@ export default class UserService {
             const response = await axios.get('http://localhost:8080/users')
             return response.data;
         }
-        catch (e) {
-            console.log(e)
+        catch (error) {
+            console.log(error.message)
         }  
+    }
+
+    static async getById(id) {
+        try {
+            const response = await axios.get(`http://localhost:8080/users/${id}`)
+            return response.data;
+        } catch (error) {
+            console.log(error.message)
+        }
     }
 
     static async postUser(user) {
@@ -17,8 +26,8 @@ export default class UserService {
             const response = await axios.post('http://localhost:8080/users', user)
             return response.data;
         }
-        catch (e) {
-            console.log(e)
+        catch (error) {
+            console.log(error.message)
         }
     }    
 }

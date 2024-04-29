@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./styles/App.css";
 import AppRouter from './components/AppRouter';
 import { AuthContext } from "./context/AuthContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UserIdContext } from "./context/UserIdContext";
 
 
@@ -11,6 +11,12 @@ function App() {
   
   const [isAuth, setIsAuth] = useState(false)
   const [userId, setUserId] = useState()
+
+  useEffect(() => {
+    if (localStorage.getItem("isAuth")){
+        setIsAuth(true)
+    }
+  }, [])
 
   return (
     <div className="App">

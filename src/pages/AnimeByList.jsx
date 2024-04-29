@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import AnimeService from '../API/AnimeService'
 import MyForm from '../components/MyForm'
-import AnimeInfo from '../components/AnimeInfo'
 import Navbar from '../components/Navbar'
-import Episode from '../components/Episode'
+import AnimeService from '../API/AnimeService'
+import AnimeInfo from '../components/Anime/AnimeInfo'
+import AnimeEpisode from '../components/Anime/AnimeEpisode'
+import AnimeCommentList from '../components/Anime/Comments/AnimeCommentList'
 
 const AnimeByList = () => {
     const params = useParams()
@@ -22,8 +23,9 @@ const AnimeByList = () => {
   return (
     <div>
       <Navbar/>
-      <MyForm body={<AnimeInfo anime={anime}/>} style={{width: "1250px", marginTop:"50px"}}/>
-      <MyForm body={<Episode anime={anime}/>} style={{width: "1250px", marginTop:"50px"}}/>
+      <MyForm body={<AnimeInfo anime={anime}/>} style={{width: "1250px", marginTop:"100px"}}/>
+      <MyForm body={<AnimeEpisode anime={anime}/>} style={{width: "1250px", marginTop:"30px"}}/>
+      <MyForm body={<AnimeCommentList comments={anime.comments}/>} style={{width: "1250px", marginTop:"30px"}}/>
     </div>
   )
 }

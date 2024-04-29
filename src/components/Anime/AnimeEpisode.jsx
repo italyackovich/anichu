@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import MyButton from './MyButton'
+import MyButton from '../MyButton'
 
-const Episode = ({anime}) => {
+const AnimeEpisode = ({anime}) => {
 
     const [episode, setEpisode] = useState()
 
@@ -21,6 +21,7 @@ const Episode = ({anime}) => {
         <div className='d-flex items-wrap'>
             {anime.episodes?.map((episode) => (
                 <MyButton
+                    key={episode.url}
                     text={episode.number}
                     className="btn btn-dark mx-2"
                     type="episode"
@@ -35,4 +36,4 @@ const Episode = ({anime}) => {
   )
 }
 
-export default Episode
+export default AnimeEpisode
