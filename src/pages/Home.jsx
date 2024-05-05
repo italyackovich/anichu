@@ -3,7 +3,6 @@ import MyForm from '../components/MyForm'
 import AnimeList from '../components/Anime/AnimeList'
 
 const Home = () => {
-
   return (
     <div>
       <Navbar/>

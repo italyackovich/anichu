@@ -17,7 +17,7 @@ const AppRouter = () => {
             <Routes>
                 <Route exact path='/' element={<Home />} />
                 <Route exact path='/login' element={<Authorization />} />
-                <Route exact path='/anime/:id' element={<AnimeByList/>} />
+                <Route path='/anime/:id' element={<AnimeByList/>} />
                 <Route exact path='*' element={<Navigate to={'/'} />}/>
             </Routes>
         </div>

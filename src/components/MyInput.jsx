@@ -1,4 +1,5 @@
 import React from 'react'
+import './MyInput.sass'
 
 const MyInput = ({className, type, placeholder, style, onChange, value}) => {
 

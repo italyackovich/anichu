@@ -13,10 +13,10 @@ function App() {
   const [userId, setUserId] = useState()
 
   useEffect(() => {
-    if (localStorage.getItem("isAuth")){
-        setIsAuth(true)
-    }
-  }, [])
+    console.log(localStorage.getItem("isAuth"))
+    setIsAuth(JSON.parse(localStorage.getItem("isAuth")))
+    setUserId(localStorage.getItem("userId"))
+  }, [isAuth, userId])
 
   return (
     <div className="App">

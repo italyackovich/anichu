@@ -3,12 +3,23 @@ import MyInput from './MyInput'
 import { Link, useNavigate } from 'react-router-dom'
 import MyButton from './MyButton'
 import { AuthContext } from '../context/AuthContext'
+import { UserIdContext } from '../context/UserIdContext'
 
 const Navbar = () => {
 
     const navigate = useNavigate()
 
     const {isAuth, setIsAuth} = useContext(AuthContext)
+    const {setUserId} = useContext(UserIdContext)
+
+    const LogOut = (e) => {
+        e.preventDefault()
+        setIsAuth(false)
+        setUserId(null)
+        localStorage.setItem("isAuth", false)
+        localStorage.setItem("userId", null)
+        navigate("/")
+    }
 
     return (
         <div>
@@ -31,7 +42,7 @@ const Navbar = () => {
                                     text={"Выйти"}
                                     className={"btn btn-outline-danger mx-4"}
                                     type={"logout"}
-                                    onClick={(e) =>{ e.preventDefault(); return setIsAuth(false)}}
+                                    onClick={LogOut}
                                 />
                             :   <MyButton
                                     text={"Войти"}

@@ -1,36 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import MyButton from '../MyButton'
+import './AnimeEpisode.sass'
 
-const AnimeEpisode = ({anime}) => {
+const AnimeEpisode = ({episodes}) => {
 
     const [episode, setEpisode] = useState()
 
     useEffect(() => {
-        setEpisode(anime.episodes?.[0]?.url ?? '')
-    }, [anime])
+        setEpisode(episodes?.[0]?.url ?? '')
+    }, [episodes])
 
   return (
-    <div className='container align-items-center'>
+    <div className='d-flex container align-items-center'>
         <iframe
-          width="640"
-          height="384"
+          width="834"
+          height="500"
           src={episode}
           frameborder="0"
           allowfullscreen="true">
         </iframe>
-        <div className='d-flex items-wrap'>
-            {anime.episodes?.map((episode) => (
-                <MyButton
-                    key={episode.url}
-                    text={episode.number}
-                    className="btn btn-dark mx-2"
-                    type="episode"
-                    onClick={(e) => {
-                        e.preventDefault();
-                        setEpisode(episode.url)
-                    }}
-                />
-            ))}
+        <div className='list'>
+                {episodes?.map((episode) => (
+                    <MyButton
+                        key={episode.url}
+                        text={episode.number}
+                        className="btn btn-outline-secondary"
+                        type="episode"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setEpisode(episode.url)
+                        }}
+                    />
+                ))}
         </div>
     </div>
   )

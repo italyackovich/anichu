@@ -11,4 +11,14 @@ export default class CommentService {
             console.log(error.message)
         }
     }
+
+    static getCommentsByAnimeId = async (id) => {
+        try {
+            const response = await axios.get(`http://localhost:8080/anime/${id}/comments`)
+            return response.data;
+        }
+        catch (error) {
+            console.log(error.message)
+        }
+    }
 }
