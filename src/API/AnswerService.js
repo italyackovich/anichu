@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default class CommentService {
+export default class AnswerService {
 
     static postAnswer = async (comment, answer) => {
         try {

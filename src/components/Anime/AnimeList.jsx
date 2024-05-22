@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AnimeItem from './AnimeItem'
 import AnimeService from '../../API/AnimeService'
 
-const AnimeList = () => {
+const AnimeList = ({title}) => {
 
     const [anime, setAnime] = useState([])
 
@@ -16,9 +16,9 @@ const AnimeList = () => {
     }
     return (
         <div>
-            <h1>Онгоинги</h1>
+            <h1>{title}</h1>
             <div className='d-flex flex-wrap'>
-                {anime.map((anime) => (
+                {anime?.map((anime) => (
                     <AnimeItem key={anime.link} anime={anime}/>
                 ))}
             </div>

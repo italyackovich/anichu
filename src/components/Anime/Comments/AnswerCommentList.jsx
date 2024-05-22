@@ -4,8 +4,8 @@ import AnswerComment from './AnswerComment'
 const AnswerCommentList = ({answers}) => {
     return (
         <div className='mx-5'>
-            {answers?.slice().reverse()?.map((answer) =>
-                <AnswerComment key={answer.id} answer={answer}/>
+            {answers?.slice().reverse()?.map((answer, index) =>
+                <AnswerComment key={index} answer={answer}/>
             )}
         </div>
     )

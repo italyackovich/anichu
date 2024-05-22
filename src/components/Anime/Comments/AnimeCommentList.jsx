@@ -3,15 +3,14 @@ import AnimeComment from './AnimeComment'
 import EnterComment from './EnterComment'
 import { CommContext } from '../../../context/CommContext'
 
-const AnimeCommentList = () => {
-    const {comments} = useContext(CommContext)
+const AnimeCommentList = ({comments, setComments}) => {
     return (
-      <div className='container align-items-center'>
+        <div className='container align-items-center'>
             <h3>Комментарии</h3>
-            <EnterComment/>
-            {comments.length
-                ? comments.slice().reverse()?.map((comment) => 
-                    <AnimeComment key={comment.id} comment={comment} />)
+            <EnterComment comments={comments} setComments={setComments}/>
+            {comments?.length
+                ? comments.slice().reverse()?.map((comment, index) => 
+                    <AnimeComment key={index} comment={comment} />)
                 : <h3>Комментариев нет</h3>
             }
         </div>

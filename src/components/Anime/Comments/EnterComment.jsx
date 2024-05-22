@@ -5,14 +5,12 @@ import MyButton from '../../MyButton'
 import { useParams } from 'react-router-dom'
 import { UserIdContext } from '../../../context/UserIdContext'
 import CommentService from '../../../API/CommentService'
-import { CommContext } from '../../../context/CommContext'
-import axios from 'axios'
 
-const EnterComment = () => {
-    
+const EnterComment = ({comments, setComments}) => {
     const params = useParams()
     const {userId} = useContext(UserIdContext)
-    const {comments, setComments} = useContext(CommContext)
+    // console.log(comments)
+
     const [newComment, setNewComment] = useState({
         body: "",
         date: new Date().toLocaleString(),
@@ -21,10 +19,9 @@ const EnterComment = () => {
     })
 
     const addComm = async () => {
+        // console.log(comments)
         setNewComment({...newComment, date: new Date().toLocaleString()})
         await CommentService.postComment(newComment)
-        // const res = await CommentService.getCommentsByAnimeId(params.id)
-        // console.log(res)
         setComments([...comments, newComment])
         setNewComment({body: '', date: new Date().toLocaleString(), user_id: userId, anime_id: params.id})
     }

@@ -3,6 +3,8 @@ import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import Home from '../pages/Home'
 import Authorization from '../pages/Authorization'
 import AnimeByList from '../pages/AnimeByList'
+import ProfileUser from '../pages/ProfileUser'
+import Catalog from '../pages/Catalog'
 
 const AppRouter = () => {
 
@@ -17,8 +19,10 @@ const AppRouter = () => {
             <Routes>
                 <Route exact path='/' element={<Home />} />
                 <Route exact path='/login' element={<Authorization />} />
-                <Route path='/anime/:id' element={<AnimeByList/>} />
+                <Route exact path='/anime/:id' element={<AnimeByList/>} />
+                <Route exact path='/profile/:id' element={<ProfileUser/>} />
                 <Route exact path='*' element={<Navigate to={'/'} />}/>
+                <Route exact path='/catalog' element={<Catalog />}/>
             </Routes>
         </div>
     )

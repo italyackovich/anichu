@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div>
       <Navbar/>
-      <MyForm body={<AnimeList/>} style={{width: "1250px", marginTop:"80px"}}/>
+      <MyForm body={<AnimeList title={"Что то будет"}/>} style={{width: "1250px", marginTop:"100px"}}/>
     </div>
   )
 }

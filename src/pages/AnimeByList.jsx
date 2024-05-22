@@ -7,6 +7,7 @@ import AnimeInfo from '../components/Anime/AnimeInfo'
 import AnimeEpisode from '../components/Anime/AnimeEpisode'
 import AnimeCommentList from '../components/Anime/Comments/AnimeCommentList'
 import { CommContext } from '../context/CommContext'
+import CommentService from '../API/CommentService'
 
 const AnimeByList = () => {
     const params = useParams()
@@ -15,22 +16,31 @@ const AnimeByList = () => {
 
     useEffect(() => {
         loadAnime()
+        loadComments()
     }, [])
+
+    // useEffect(() => {
+    //   loadComments()
+    // }, [])
     
     const loadAnime = async () => {
         const result = await AnimeService.getAnimeById(params.id)
         setAnime(result)
-        setComments(result.comments)
+        // setComments(result.comments)
     }
 
+    const loadComments = async () => {
+        const result = await CommentService.getCommentsByAnimeId(params.id)
+        // console.log(params.id)
+        // console.log(result)
+        setComments(result)
+    }
   return (
     <div>
       <Navbar/>
       <MyForm body={<AnimeInfo anime={anime}/>} style={{width: "1250px", marginTop:"100px"}}/>
       <MyForm body={<AnimeEpisode episodes={anime.episodes}/>} style={{width: "1250px", marginTop:"30px"}}/>
-      <CommContext.Provider value={{comments, setComments}}>
-        <MyForm body={<AnimeCommentList/>} style={{width: "1250px", marginTop:"30px"}}/>
-      </CommContext.Provider>
+      <MyForm body={<AnimeCommentList comments={comments} setComments={setComments}/>} style={{width: "1250px", marginTop:"30px"}}/>
     </div>
   )
 }

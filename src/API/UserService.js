@@ -29,5 +29,15 @@ export default class UserService {
         catch (error) {
             console.log(error.message)
         }
-    }    
+    }   
+    
+    static async patchUser(user) {
+        try {
+            const response = await axios.patch(`http://localhost:8080/users/${user.id}`, user)
+            return response.data;
+        }
+        catch (error) {
+            console.log(error.message)
+        }
+    }
 }

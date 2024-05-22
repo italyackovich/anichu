@@ -11,9 +11,10 @@ function App() {
   
   const [isAuth, setIsAuth] = useState(false)
   const [userId, setUserId] = useState()
+  // const [user, setUser] = useState({})
 
   useEffect(() => {
-    console.log(localStorage.getItem("isAuth"))
+    // console.log(localStorage.getItem("isAuth"))
     setIsAuth(JSON.parse(localStorage.getItem("isAuth")))
     setUserId(localStorage.getItem("userId"))
   }, [isAuth, userId])

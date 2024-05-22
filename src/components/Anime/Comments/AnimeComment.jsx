@@ -6,15 +6,16 @@ import MyButton from '../../MyButton'
 import MyInput from '../../MyInput'
 import { UserIdContext } from '../../../context/UserIdContext'
 import AnswerService from '../../../API/AnswerService'
+import CommentService from '../../../API/CommentService'
+import EnterComment from './EnterComment'
 
 const AnimeComment = ({ comment }) => {
 
     const {userId} = useContext(UserIdContext)
-    const params = useParams()
 
+    const params = useParams()
     const [user, setUser] = useState({})
     const [isAnsw, setIsAnsw] = useState(false)
-    const [answers, setAnswers] = useState([])
     const [newAnsw, setNewAnsw] = useState({
         body: "",
         date: new Date().toLocaleString(),
@@ -22,28 +23,40 @@ const AnimeComment = ({ comment }) => {
         comment_id: comment.id
     })
 
-    const addAnsw = async () => {
-        setNewAnsw({...newAnsw, date: new Date().toLocaleString()})
-        await AnswerService.postAnswer(comment, newAnsw)
-        console.log(comment.id)
-        // loadAnswers(comment)
-        setAnswers(Array.isArray(answers) ? [...answers, newAnsw] : [newAnsw])
-        setNewAnsw({body: '', date: new Date().toLocaleString(), user_id: userId, anime_id: params.id})
-    }
+    // const addAnsw = async () => {
+    //     console.log(comment.id)
+    //     console.log(comment)
+        
+        
+    //     setNewAnsw(prev => (
+    //         {...prev,
+    //             date: new Date().toLocaleString(),
+    //             comment_id: comment.id
+    //         })
+    //     )
+        
+    //     setNewAnsw({body: '', date: new Date().toLocaleString(), user_id: userId, anime_id: params.id, comment_id: comment.id})
+    // }
 
     const loadUser = async (id) => {
         const result = await UserService.getById(id)
         setUser(result);
     }
 
-    const loadAnswers = async (id) => {
-        const result = await AnswerService.getAnswersByCommentId(id)
-        console.log(result);
+    const loadComments = async (id) => {
+        const result = await CommentService.getCommentsByAnimeId(id)
+        setNewAnsw(prev => ({...prev, comment_id: result[result.length - 1]?.id}));
     }
+
+    // const loadAnswers = async (id) => {
+    //     const result = await AnswerService.getAnswersByCommentId(id)
+    //     console.log(result);
+    // }
     
-    useEffect(() => {
+    useEffect(() =>  {
+        // console.log(comment)
         loadUser(comment.user_id)
-        setAnswers(comment.answerComments)
+        loadComments(params.id)
     }, [])
 
     return (
@@ -56,24 +69,25 @@ const AnimeComment = ({ comment }) => {
                 <p>{comment.body}</p>
                 <MyButton className={"btn btn-dark btn-sm"} text={isAnsw ? "Отменить" : "Ответить"} onClick={() => setIsAnsw(!isAnsw)}/>
                 {isAnsw 
-                    ?   <div className='row my-4'>
-                            <div className='col-md-6'>
-                                <MyInput
-                                    className={"form-control bg-dark"}
-                                    style={{ color: "white" }}
-                                    type={"text"}
-                                    placeholder={"Комментарий..."}
-                                    value={newAnsw.body}
-                                    onChange={(e) => setNewAnsw({ ...newAnsw, body: e.target.value })}
-                                />
-                            </div>
-                            <div className='col-md-1'>
-                                <MyButton className={"btn btn-outline-success"} text={"Отправить"} onClick={addAnsw}/>
-                            </div>
-                        </div>
+                    // ?   <div className='row my-4'>
+                    //         <div className='col-md-6'>
+                    //             <MyInput
+                    //                 className={"form-control bg-dark"}
+                    //                 style={{ color: "white" }}
+                    //                 type={"text"}
+                    //                 placeholder={"Комментарий..."}
+                    //                 value={newAnsw.body}
+                    //                 onChange={(e) => setNewAnsw({ ...newAnsw, body: e.target.value })}
+                    //             />
+                    //         </div>
+                    //         <div className='col-md-1'>
+                    //             <MyButton className={"btn btn-outline-success"} text={"Отправить"} onClick={() => { addAnsw()}}/>
+                    //         </div>
+                    //     </div>
+                    ? <EnterComment setIsAnsw={setIsAnsw} bodyState={`@${user.username}`}/>
                     : null}
             </div>
-            <AnswerCommentList answers={answers} />
+            {/* <AnswerCommentList answers={answers} /> */}
         </div>
     )
 }
