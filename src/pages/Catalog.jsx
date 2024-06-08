@@ -31,6 +31,7 @@ const Catalog = () => {
     const result = await GenresService.getAllGenres();
     const genresArray = result.map(genre => genre.name);
     setGenres([...new Set(genresArray)]);
+    localStorage.setItem("genres", JSON.stringify([...new Set(genresArray)]));
   };
 
   const loadAnime = async () => {
