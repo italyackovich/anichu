@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
-import "./DropDown.sass"
+import "../../styles/DropDown.sass"
 import UserService from '../../API/UserService';
 import { UserIdContext } from '../../context/UserIdContext';
+import { AuthContext } from '../../context/AuthContext';
 
 const DropDown = ({ anime }) => {
 
     const { userId } = useContext(UserIdContext)
+    const { isAuth } = useContext(AuthContext)
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [user, setUser] = useState({});
 
@@ -65,7 +67,7 @@ const DropDown = ({ anime }) => {
 
     return (
         <div className="dropdown my-3">
-            <button className="btn btn-success dropdown-toggle w-75" type="button" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+            <button className="btn btn-success dropdown-toggle w-75" disabled={!isAuth} type="button" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                 Добавить
             </button>
             {isDropdownOpen ?

@@ -1,19 +1,18 @@
 import React from 'react'
-import './MyInput.sass'
 
-const MyInput = ({className, type, placeholder, style, onChange, value}) => {
+const MyInput = ({ id, className, type, placeholder, style, onChange, value, onFocus }) => {
 
   return (
-    <div>
-        <input
-            className={className}
-            type={type}
-            value={value}
-            style={style}
-            placeholder={placeholder}
-            onChange={onChange}
-        />
-    </div>
+    <input
+      className={className}
+      type={type}
+      value={value}
+      style={style}
+      placeholder={placeholder}
+      onChange={onChange}
+      id={id}
+      onFocus={onFocus}
+    />
   )
 }
 

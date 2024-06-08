@@ -17,7 +17,7 @@ const AnimeByList = () => {
     useEffect(() => {
         loadAnime()
         loadComments()
-    }, [])
+    }, [params.id])
 
     // useEffect(() => {
     //   loadComments()
@@ -31,8 +31,8 @@ const AnimeByList = () => {
 
     const loadComments = async () => {
         const result = await CommentService.getCommentsByAnimeId(params.id)
-        // console.log(params.id)
-        // console.log(result)
+        console.log(params.id)
+        console.log(result)
         setComments(result)
     }
   return (

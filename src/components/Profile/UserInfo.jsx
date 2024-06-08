@@ -19,6 +19,9 @@ const UserInfo = () => {
     const [user, setUser] = useState({})
     const getUser = async (id) => {
         const response = await UserService.getById(id)
+        console.log(id)
+        console.log(response)
+        localStorage.setItem('user', JSON.stringify(response))
         setUser(response)
     }
 
@@ -54,10 +57,10 @@ const UserInfo = () => {
                     <span><b>Имя:</b></span>
                     <span className='text-success'> {user.name}</span>
                 </div>
-                <MyButton className="btn btn-success" text={"Редактировать"} />
-                <MyButton className="btn btn-danger" text={"Выйти"} onClick={()=>{logOut()}}/>
+                {/* <MyButton className="btn btn-success w-100" text={"Редактировать"} /> */}
+                <MyButton className="btn btn-danger my-2 w-100" text={"Выйти"} onClick={()=>{logOut()}}/>
             </div>
-            <List/>
+            <List user={user}/>
         </div>
     )
 }

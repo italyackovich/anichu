@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import MyButton from '../MyButton'
-import './AnimeEpisode.sass'
+import '../../styles/AnimeEpisode.sass'
 
 const AnimeEpisode = ({episodes}) => {
 

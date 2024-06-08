@@ -1,40 +1,52 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import MyButton from '../MyButton';
-import "./List.sass"
+import "../../styles/List.sass"
 import { Link, useParams } from 'react-router-dom';
 import UserService from "../../API/UserService"
 
 const List = () => {
+    const params = useParams()
     const [isOpenWatching, setIsOpenWatching] = useState(false);
     const [isOpenWillWatching, setIsOpenWillWatching] = useState(false);
     const [isOpenWatched, setIsOpenWatched] = useState(false);
 
-    const [user, setUser] = useState({})
+    // const [user, setUser] = useState({})
     const [watchAnimeList, setWatchAnimeList] = useState([])
     const [watchedAnimeList, setWatchedAnimeList] = useState([])
     const [willWatchAnimeList, setWillWatchAnimeList] = useState([])
 
     const setLists = () => {
-        const watchAnimeList = Array.isArray(user.watchAnimeList) ? user.watchAnimeList : [];
-        const watchedAnimeList = Array.isArray(user.watchedAnimeList) ? user.watchedAnimeList : [];
-        const willWatchAnimeList = Array.isArray(user.willWatchAnimeList) ? user.willWatchAnimeList : [];
+        const user = JSON.parse(localStorage.getItem('user'))
+        console.log(user)
+        const watchAnimeList = user.watchAnimeList != null ? user.watchAnimeList : [];
+        const watchedAnimeList = user.watchedAnimeList != null ? user.watchedAnimeList : [];
+        const willWatchAnimeList = user.willWatchAnimeList != null ? user.willWatchAnimeList : [];
         setWatchAnimeList(watchAnimeList)
         setWatchedAnimeList(watchedAnimeList)
         setWillWatchAnimeList(willWatchAnimeList)
     }
 
-    useEffect(() => {
-        const getUser = async () => {
-            const response = await UserService.getById(params.id)
-            // console.log(response)
-            setUser(response)
-        }
-        getUser()
-        setLists()
-    }, [watchAnimeList, watchedAnimeList, willWatchAnimeList])
-    
+    // const getUser = async () => {
+    //     const response = await UserService.getById(params.id)
+    //     setUser(response)
+    // }
 
-    const params = useParams()
+    // const watchMemo = useMemo(() => {
+    //     return user.watchAnimeList != null ? user.watchAnimeList : []
+    // }, [watchAnimeList])
+
+    // const watchedMemo = useMemo(() => {
+    //     return user.watchedAnimeList != null ? user.watchedAnimeList : []
+    // }, [watchedAnimeList])
+
+    // const willWatchMemo = useMemo(() => {
+    //     return user.willWatchAnimeList != null ? user.willWatchAnimeList : []
+    // }, [willWatchAnimeList])
+
+    useEffect(() => {
+        // getUser()
+        setLists()
+    }, [])
 
     return (
         <div className="accordion w-100 my-3" id="accordionPanelsStayOpenExample">
@@ -75,10 +87,13 @@ const List = () => {
                 <div id="panelsStayOpen-collapseThree" className={`accordion-collapse collapse ${isOpenWatched ? "show" : ""}`}>
                     <div className="accordion-body">
                     {watchedAnimeList.map((anime, index) => (
+                        <div className='d-flex'>
                             <Link className='d-flex link-success align-items-center my-2 link-underline-opacity-0' to={`/anime/${anime.id}`} key={index}>
                                 <img className='rounded' src={`${anime.img}`} style={{ width: "80px", height: "100px", overflow: "hidden" }}/>
                                 <h5 className='mx-3'>{anime.name}</h5>
                             </Link>
+                            <button className='btn btn-sm btn-danger mx-3'>Удалить</button>
+                        </div>
                         ))}
                     </div>
                 </div>
