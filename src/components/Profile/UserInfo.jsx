@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { UserIdContext } from '../../context/UserIdContext'
 import UserService from '../../API/UserService'
 import { useNavigate, useParams } from 'react-router-dom'
 import MyButton from '../MyButton'
@@ -57,7 +56,6 @@ const UserInfo = () => {
                     <span><b>Имя:</b></span>
                     <span className='text-success'> {user.name}</span>
                 </div>
-                {/* <MyButton className="btn btn-success w-100" text={"Редактировать"} /> */}
                 <MyButton className="btn btn-danger my-2 w-100" text={"Выйти"} onClick={()=>{logOut()}}/>
             </div>
             <List user={user}/>

@@ -1,10 +1,8 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react'
-import MyInput from './MyInput'
 import { Link, useNavigate } from 'react-router-dom'
 import MyButton from './MyButton'
 import { AuthContext } from '../context/AuthContext'
 import { UserIdContext } from '../context/UserIdContext'
-import { AnimeContext } from '../context/AnimeContext'
 import "../styles/Navbar.sass"
 import AnimeService from '../API/AnimeService'
 import "../styles/AnimeItem.sass"
@@ -24,15 +22,6 @@ const Navbar = () => {
     const loadAnime = async () => {
         setAnime(await AnimeService.getAllAnime())
     }
-
-    // const LogOut = (e) => {
-    //     e.preventDefault()
-    //     setIsAuth(false)
-    //     setUserId(null)
-    //     localStorage.setItem("isAuth", false)
-    //     localStorage.setItem("userId", null)
-    //     navigate("/")
-    // }
     
 
     const searchAnime = useMemo(() => {

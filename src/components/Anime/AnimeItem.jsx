@@ -12,11 +12,6 @@ const AnimeItem = ({ anime }) => {
                 <div className='d-flex align-items-center'>
                     <img src={anime.img} alt={anime.link} className="rounded" style={{ width: "70px", height: "100px" }} />
                     <span className='mx-5'>
-                        {/* <Link
-                            className="link-success link-underline-opacity-0 fs-4"
-                            to={`/anime/${anime.id}`}>
-                            <b>{anime.name}</b>
-                        </Link> */}
                         <h4 className='text-success'>{anime.name}</h4>
                         <h6>Кол-во серий: {anime.episodes.length}</h6>
                         <h6>Статус: {anime.status}</h6>

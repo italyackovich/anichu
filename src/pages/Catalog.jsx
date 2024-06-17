@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import MyForm from '../components/MyForm'
 import AnimeService from '../API/AnimeService'
@@ -7,7 +7,6 @@ import FilterForm from '../components/Anime/Catalog/FilterForm'
 import "../styles/Catalog.sass"
 import GenresService from '../API/GenresService'
 import { GenresContext } from '../context/GenresContext'
-import { AnimeContext } from '../context/AnimeContext'
 
 const Catalog = () => {
   // const {animeCon} = useContext(AnimeContext)

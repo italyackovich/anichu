@@ -17,12 +17,4 @@ export default class AnimeService {
             console.log(error)
         }
     }
-    static async patchAnime(anime) {
-        try {
-            const response = await axios.patch(`http://localhost:8080/anime/${anime.id}`, anime)
-            return response.data;
-        } catch (error) {
-            console.log(error)
-        }
-    }
 }

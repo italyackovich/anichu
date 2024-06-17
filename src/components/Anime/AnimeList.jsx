@@ -16,19 +16,11 @@ const AnimeList = ({title}) => {
         loadAnime();
     }, []);
 
-    // useEffect(() => {
-    //     if (anime.length > 0) {
-    //         const filtered = anime.filter(item => 
-    //             item.genres.some(genre => genre.name === title)
-    //         );
-    //         setFilteredAnime(filtered);
-    //     }
-    // }, [anime, title]);
     useEffect(() => {
         if (anime.length > 0) {
             const filtered = anime.filter(item =>
                 item.genres.some(genre => genre.name === title)
-            ).slice(0, 6); // Ограничиваем до 6 элементов
+            ).slice(0, 6);
 
             setFilteredAnime(filtered);
         }

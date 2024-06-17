@@ -6,7 +6,6 @@ import AnimeService from '../API/AnimeService'
 import AnimeInfo from '../components/Anime/AnimeInfo'
 import AnimeEpisode from '../components/Anime/AnimeEpisode'
 import AnimeCommentList from '../components/Anime/Comments/AnimeCommentList'
-import { CommContext } from '../context/CommContext'
 import CommentService from '../API/CommentService'
 
 const AnimeByList = () => {
@@ -18,15 +17,10 @@ const AnimeByList = () => {
         loadAnime()
         loadComments()
     }, [params.id])
-
-    // useEffect(() => {
-    //   loadComments()
-    // }, [])
     
     const loadAnime = async () => {
         const result = await AnimeService.getAnimeById(params.id)
         setAnime(result)
-        // setComments(result.comments)
     }
 
     const loadComments = async () => {

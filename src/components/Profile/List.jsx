@@ -26,25 +26,7 @@ const List = () => {
         setWillWatchAnimeList(willWatchAnimeList)
     }
 
-    // const getUser = async () => {
-    //     const response = await UserService.getById(params.id)
-    //     setUser(response)
-    // }
-
-    // const watchMemo = useMemo(() => {
-    //     return user.watchAnimeList != null ? user.watchAnimeList : []
-    // }, [watchAnimeList])
-
-    // const watchedMemo = useMemo(() => {
-    //     return user.watchedAnimeList != null ? user.watchedAnimeList : []
-    // }, [watchedAnimeList])
-
-    // const willWatchMemo = useMemo(() => {
-    //     return user.willWatchAnimeList != null ? user.willWatchAnimeList : []
-    // }, [willWatchAnimeList])
-
     useEffect(() => {
-        // getUser()
         setLists()
     }, [])
 
@@ -57,10 +39,12 @@ const List = () => {
                 <div id="panelsStayOpen-collapseOne" className={`accordion-collapse collapse ${isOpenWatching ? "show" : ""}`}>
                     <div className="accordion-body">
                         {watchAnimeList.map((anime, index) => (
-                            <Link className='d-flex link-success align-items-center my-2 link-underline-opacity-0' to={`/anime/${anime.id}`} key={index}>
-                                <img className='rounded' src={`${anime.img}`} style={{ width: "80px", height: "100px", overflow: "hidden" }}/>
-                                <h5 className='mx-3'>{anime.name}</h5>
-                            </Link>
+                            <div className='d-flex align-items-center'>
+                                <Link className='d-flex link-success align-items-center my-2 link-underline-opacity-0' to={`/anime/${anime.id}`} key={index}>
+                                    <img className='rounded' src={`${anime.img}`} style={{ width: "80px", height: "100px", overflow: "hidden" }}/>
+                                    <h5 className='mx-3'>{anime.name}</h5>
+                                </Link>
+                            </div>
                         ))}
                     </div>
                 </div>
@@ -72,10 +56,12 @@ const List = () => {
                 <div id="panelsStayOpen-collapseTwo" className={`accordion-collapse collapse ${isOpenWillWatching ? "show" : ""}`}>
                     <div className="accordion-body">
                     {willWatchAnimeList.map((anime, index) => (
-                        <Link className='d-flex link-success align-items-center my-2 link-underline-opacity-0' to={`/anime/${anime.id}`} key={index}>
-                            <img className='rounded' src={`${anime.img}`} style={{ width: "80px", height: "100px", overflow: "hidden" }}/>
-                            <h5 className='mx-3'>{anime.name}</h5>
-                        </Link>
+                        <div className='d-flex align-items-center'>
+                            <Link className='d-flex link-success align-items-center my-2 link-underline-opacity-0' to={`/anime/${anime.id}`} key={index}>
+                                <img className='rounded' src={`${anime.img}`} style={{ width: "80px", height: "100px", overflow: "hidden" }}/>
+                                <h5 className='mx-3'>{anime.name}</h5>
+                            </Link>
+                        </div>
                     ))}
                     </div>
                 </div>
@@ -87,12 +73,11 @@ const List = () => {
                 <div id="panelsStayOpen-collapseThree" className={`accordion-collapse collapse ${isOpenWatched ? "show" : ""}`}>
                     <div className="accordion-body">
                     {watchedAnimeList.map((anime, index) => (
-                        <div className='d-flex'>
+                        <div className='d-flex align-items-center'>
                             <Link className='d-flex link-success align-items-center my-2 link-underline-opacity-0' to={`/anime/${anime.id}`} key={index}>
                                 <img className='rounded' src={`${anime.img}`} style={{ width: "80px", height: "100px", overflow: "hidden" }}/>
                                 <h5 className='mx-3'>{anime.name}</h5>
                             </Link>
-                            <button className='btn btn-sm btn-danger mx-3'>Удалить</button>
                         </div>
                         ))}
                     </div>

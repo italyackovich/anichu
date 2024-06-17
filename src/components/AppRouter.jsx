@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
+import React from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Home from '../pages/Home'
 import Authorization from '../pages/Authorization'
 import AnimeByList from '../pages/AnimeByList'
@@ -7,13 +7,6 @@ import ProfileUser from '../pages/ProfileUser'
 import Catalog from '../pages/Catalog'
 
 const AppRouter = () => {
-
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        navigate("/")
-    }, [])
-
     return (
         <div>
             <Routes>

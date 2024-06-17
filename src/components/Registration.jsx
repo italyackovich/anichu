@@ -6,6 +6,8 @@ import UserService from '../API/UserService'
 
 const Registration = () => {
 
+    const [errors, setErrors] = useState({});
+
     const [newUser, setNewUser] = useState({
         username: "",
         name: "",
@@ -24,13 +26,38 @@ const Registration = () => {
           }
         }
         return true;
-      }
+    }
+
+    const validate = () => {
+        const errors = {};
+        if(!newUser.username) {
+            errors.username = "Введите username.";
+        }
+
+        if(!newUser.name) {
+            errors.name = "Введите имя.";
+        }
+
+        if (!newUser.email) {
+            errors.email = "Введите email.";
+        }
+    
+        if (!newUser.password) {
+            errors.password = "Введите пароль.";
+        }
+    
+        setErrors(errors);
+        return Object.keys(errors).length === 0;
+    }
 
     const regUser = (e) => {
         e.preventDefault();
+        if (!validate()) {
+            return
+        }
         if (!isAllFieldsFilled(newUser)) {
-            console.log("Не все поля заполнены");
-            return;
+            setErrors({ general: "Заполните все поля" });
+            return
         }
         UserService.postUser(newUser)
         setIsLogin(true)
@@ -48,6 +75,7 @@ const Registration = () => {
                 value={newUser.username}
                 onChange={(e) => setNewUser({...newUser, username: e.target.value})}
             />
+            {errors.email && <div className="text-danger">{errors.username}</div>}
         </div>
         <div className="form-group">
             <label htmlFor="InputName" className="text-white">Имя</label>
@@ -58,6 +86,7 @@ const Registration = () => {
                 value={newUser.name}
                 onChange={(e) => setNewUser({...newUser, name: e.target.value})}
             />
+            {errors.email && <div className="text-danger">{errors.name}</div>}
         </div>
         <div className="form-group my-3">
             <label htmlFor="InputEmail" className="text-white">Email</label>
@@ -68,6 +97,7 @@ const Registration = () => {
                 value={newUser.email}
                 onChange={(e) => setNewUser({...newUser, email: e.target.value})}
             />
+            {errors.email && <div className="text-danger">{errors.email}</div>}
         </div>
         <div className="form-group">
             <label htmlFor="InputPassword" className="text-white">Пароль</label>
@@ -78,6 +108,7 @@ const Registration = () => {
                 value={newUser.password}
                 onChange={(e) => setNewUser({...newUser, password: e.target.value})}
             />
+            {errors.email && <div className="text-danger">{errors.password}</div>}
         </div>
         <MyButton
             text={!showPassword ? "Показать" : "Скрыть"}

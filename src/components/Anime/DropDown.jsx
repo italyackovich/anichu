@@ -12,11 +12,11 @@ const DropDown = ({ anime }) => {
     const [user, setUser] = useState({});
 
     const setWatchingList = () => {
-        const watchAnimeList = Array.isArray(user.watchAnimeList) ? user.watchAnimeList : [];
+        const watchAnimeList = Array.isArray(user?.watchAnimeList) ? user?.watchAnimeList : [];
         const filteredWatchAnimeList = watchAnimeList?.filter(item => item.id !== anime.id);
         const newWatchAnimeList = [...filteredWatchAnimeList, anime];
-        const filteredWatchedAnimeList = user.watchedAnimeList?.filter(item => item.id !== anime.id);
-        const filteredWillWatchAnimeList = user.willWatchAnimeList?.filter(item => item.id !== anime.id);
+        const filteredWatchedAnimeList = user?.watchedAnimeList?.filter(item => item.id !== anime.id);
+        const filteredWillWatchAnimeList = user?.willWatchAnimeList?.filter(item => item.id !== anime.id);
 
         user.watchAnimeList = newWatchAnimeList;
         user.watchedAnimeList = filteredWatchedAnimeList;
