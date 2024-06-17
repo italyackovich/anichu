@@ -34,7 +34,7 @@ const AnimeInfo = ({ anime }) => {
           <h5 className='my-3'>Год выпуска: <span className='text-success'>{anime.date}</span></h5>
           <h5>Возрастной рейтинг: <span className='text-success'>{anime.ageRating}</span></h5>
         </div>
-        <div className='col-md-1'>
+        {/* <div className='col-md-1'>
           <h5 className='d-flex align-items-center'>
             <ReactStars
               color1='#ffd700'
@@ -53,7 +53,7 @@ const AnimeInfo = ({ anime }) => {
               </div>
             :
               null}
-        </div>
+        </div> */}
         <div className='my-5'>
           <h5>{anime.description}</h5>
         </div>

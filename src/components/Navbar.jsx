@@ -36,7 +36,7 @@ const Navbar = () => {
     
 
     const searchAnime = useMemo(() => {
-        return [...anime].filter(anime => anime?.name?.toLowerCase().includes(searchQuery.toLowerCase()))
+        return [...anime]?.filter(anime => anime?.name?.toLowerCase().includes(searchQuery.toLowerCase()))
     }, [searchQuery, anime])
 
     const handleBlur = () => {
@@ -100,7 +100,7 @@ const Navbar = () => {
                 <div className='search-list'>
                     {searchAnime.length
                         ?
-                        (searchAnime.map(anime => (
+                        (searchAnime?.map(anime => (
                             <Link key={anime.id}
                                 className='link-success link-underline hover-element link-underline-opacity-0'
                                 to={`/anime/${anime.id}`}
